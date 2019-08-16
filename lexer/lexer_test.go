@@ -1,7 +1,7 @@
 package lexer
 
 import (
-	"github/genku-m/monkey/token"
+	"github.com/genku-m/monkey/token"
 	"testing"
 )
 
