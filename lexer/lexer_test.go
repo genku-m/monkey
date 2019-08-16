@@ -1,12 +1,14 @@
 package lexer
 
 import (
-	"github.com/genku-m/monkey/token"
 	"testing"
+
+	"github.com/genku-m/monkey/token"
 )
 
 func TestNextToken(t *testing.T) {
-	input := []struct {
+	input := `=+(){},;`
+	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
@@ -22,16 +24,15 @@ func TestNextToken(t *testing.T) {
 	}
 	l := New(input)
 
-	for i, tt := range tests  {
+	for i, tt := range tests {
 		tok := l.NextToken()
 
-
 		if tok.Type != tt.expectedType {
-			t.Fatalf("test[%d] - tokentype wrong.expected=%q,got=%q",i tt.expectedType,tok.Type)
+			t.Fatalf("test[%d] - tokentype wrong.expected=%q,got=%q", i, tt.expectedType, tok.Type)
 		}
 
-		if tok.Literal != expectedLiteral {
-			t.Fatalf("test[%d] - literal wrong.expected=%q,got=%q",i tt.expectedLiteral,tok.Literal)
+		if tok.Literal != tt.expectedLiteral {
+			t.Fatalf("test[%d] - literal wrong.expected=%q,got=%q", i, tt.expectedLiteral, tok.Literal)
 		}
 	}
 }
